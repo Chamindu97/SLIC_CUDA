@@ -45,7 +45,6 @@ private:
 
 	// gpu variable
 	float* d_fClusters;
-	float* d_fLabels;
 	float* d_fAccAtt;
 
 	//cudaArray
@@ -95,7 +94,16 @@ public:
 	*/
 	void segment(const cv::Mat& frame);
 	cv::Mat getLabels(){ return cv::Mat(m_FrameHeight, m_FrameWidth, CV_32F, h_fLabels); }
+	int getLabelsNumber(){
+		int maxId = 0;
+		for( int i=0; i<m_nbPx; i++ ){
+			if( int(h_fLabels[i])>maxId ){
+				maxId = int(h_fLabels[i]);
+			}
+		}
 
+		return maxId + 1; 
+	}
 	/*
 	Discard orphan clusters (optional)
 	*/
