@@ -23,8 +23,8 @@ SlicCuda::~SlicCuda(){
 	gpuErrchk(cudaFree(d_fClusters));
 	gpuErrchk(cudaFree(d_fAccAtt));
 	gpuErrchk(cudaDestroyTextureObject(oTexFrameBGRA));
-	gpuErrchk(cudaDestroyTextureObject(oSurfFrameLab));
-	gpuErrchk(cudaDestroyTextureObject(oSurfLabels));
+	gpuErrchk(cudaDestroySurfaceObject(oSurfFrameLab));
+	gpuErrchk(cudaDestroySurfaceObject(oSurfLabels));
 	gpuErrchk(cudaFreeArray(cuArrayFrameBGRA));
 	gpuErrchk(cudaFreeArray(cuArrayFrameLab));
 	gpuErrchk(cudaFreeArray(cuArrayLabels));
